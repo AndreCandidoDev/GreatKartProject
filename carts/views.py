@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from store.models import Product
 from .models import Cart, CartItem
+from django.core.exceptions import ObjectDoesNotExist
 
 
 # usa a session id para criar o carrinho
@@ -63,7 +64,7 @@ def cart(request, total=0, quantity=0, cart_items=None):
             quantity += cart_item.quantity
         tax = (2*total)/100  # aplicar regra de imposto correta aki
         grand_total = total + tax
-    except Cart.ObjectNotExist:
+    except ObjectDoesNotExist:
         pass  # ignora
     context = {'total': total,
                'quantity': quantity,
