@@ -5,10 +5,12 @@ from django.urls import path, include
 from . import views
 from store import urls as store_urls
 from carts import urls as carts_urls
+from accounts import urls as accounts_urls
 
 urlpatterns = [
     path('cart/', include(carts_urls)),
     path('store/', include(store_urls)),
+    path('accounts/', include(accounts_urls)),
     path('admin/', admin.site.urls),
     path('', views.home, name='home')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
